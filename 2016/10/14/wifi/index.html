@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Dogboy" />
+
+
+
+<meta name="description" content="由于古老的ＷPE加密的WiFi已经几乎没有了，所以这里我就不去细说如何破解WPE加密的ＷiFi了。今天就来聊聊　如何来使用Kali Linux来破解Wpa/Wpa2加密的WiFi。本次破解WiFi使用的是Kali Linux下经典的aircrack-ng">
+<meta name="keywords" content="Kali Linux,wifi破解,无线安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无线安全之破解WPA&#x2F;WPA2 加密ＷiFi">
+<meta property="og:url" content="http://northernhacker.github.io/2016/10/14/wifi/index.html">
+<meta property="og:site_name" content="StupidDog">
+<meta property="og:description" content="由于古老的ＷPE加密的WiFi已经几乎没有了，所以这里我就不去细说如何破解WPE加密的ＷiFi了。今天就来聊聊　如何来使用Kali Linux来破解Wpa/Wpa2加密的WiFi。本次破解WiFi使用的是Kali Linux下经典的aircrack-ng">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/wifisec.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/ifconfig.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/wiffiinfo.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/zhuabao.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/aireplay.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/chuangkou.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/wifibao.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/wenjianjaibao.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/5W.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/testgouxuan.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/wifi.gif">
+<meta property="og:updated_time" content="2017-08-11T01:03:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="无线安全之破解WPA&#x2F;WPA2 加密ＷiFi">
+<meta name="twitter:description" content="由于古老的ＷPE加密的WiFi已经几乎没有了，所以这里我就不去细说如何破解WPE加密的ＷiFi了。今天就来聊聊　如何来使用Kali Linux来破解Wpa/Wpa2加密的WiFi。本次破解WiFi使用的是Kali Linux下经典的aircrack-ng">
+<meta name="twitter:image" content="http://ombgvjpli.bkt.clouddn.com/wifisec.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="StupidDog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>无线安全之破解WPA/WPA2 加密ＷiFi | StupidDog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Dogboy</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:1732164513@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali-Linux/">Kali Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metasploit/">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PentestBox/">PentestBox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diy/">diy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi破解/">wifi破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xss/">xss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信息收集/">信息收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无线安全/">无线安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/渗透测试/">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神器/">神器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟化/">虚拟化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Dogboy</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Dogboy</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:1732164513@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-wifi" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/14/wifi/" class="article-date">
+      <time datetime="2016-10-14T09:19:40.000Z" itemprop="datePublished">2016-10-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      无线安全之破解WPA/WPA2 加密ＷiFi
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/hacker/">hacker</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kali-Linux/">Kali Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wifi破解/">wifi破解</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/无线安全/">无线安全</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><center><img src="http://ombgvjpli.bkt.clouddn.com/wifisec.png" alt="image"></center><br>由于古老的ＷPE加密的WiFi已经几乎没有了，所以这里我就不去细说如何破解WPE加密的ＷiFi了。今天就来聊聊　如何来使用Kali Linux来破解Wpa/Wpa2加密的WiFi。本次破解WiFi使用的是Kali Linux下经典的<code>aircrack-ng</code><br><a id="more"></a></p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>可以使用无线网络的Kali Linux<br>由于古老的ＷPE加密的WiFi已经几乎没有了，所以这里我就不去细说如何破解WPE加密的ＷiFi了。今天就来聊聊　如何来使用Kali Linux来破解Wpa/Wpa2加密的WiFi。</p>
+<p>本次破解WiFi使用的是Kali Linux下经典的<code>aircrack-ng</code>   </p>
+<h1 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h1><p>首先查看 自己的 无线设备的网卡，我这里 无线设备就是  ：<code>wlan0</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ifconfig</div></pre></td></tr></table></figure></p>
+<p><img src="http://ombgvjpli.bkt.clouddn.com/ifconfig.png" alt="image"><br>然后查看周围无线网络<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">airodump-ng wlan0</div></pre></td></tr></table></figure></p>
+<p>如果报错：<code>ioctl(SIOCSIWMODE) failed: Device or resource busy</code> 的话，<br>那么是因为网卡没有启用监听模式<br>这个时候 卸载设备，设置monitor模式，重新启用网卡即可<br>命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ifconfig wlan0 down</div><div class="line">iwconfig wlan0 mode monitor</div><div class="line">ifconfig wlan0 up</div></pre></td></tr></table></figure></p>
+<p>运行 airodump-ng wlan0 查看的无线信息如下：<br><img src="http://ombgvjpli.bkt.clouddn.com/wiffiinfo.png" alt="image"><br>这里简单解释下一些基本的参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">BSSID--无线AP（路由器）的MAC地址，如果你想PJ哪个路由器的密码就把这个信息记下来备用。</div><div class="line">PWR--这个值的大小反应信号的强弱，越大越好。很重要！！！</div><div class="line">Beacons--准确的含义忘记了，大致就是反应客户端和AP的数据交换情况，通常此值不断变化。</div><div class="line">#Data--这个值非常重要，直接影响到密码破解的时间长短，如果有用户正在下载文件或看电影等大量数据传输的话，此值增长较快。 </div><div class="line">CH--工作频道。</div><div class="line">MB--连接速度</div><div class="line">ENC--编码方式。通常有WEP、WPA、TKIP等方式，本文所介绍的方法在WEP下测试100%成功，其余方式本人 并未验证。</div><div class="line">ESSID--可以简单的理解为局域网的名称，就是通常我们在搜索无线网络时看到的列表里面的各个网络的名称。</div></pre></td></tr></table></figure></p>
+<p>接下来开始抓我们想要抓的WiFi的包，这里以ESSID名称为 Cisco的为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">airodump-ng -w Ciscotest -c 1 --bssid D8:24:BD:2F:C5:50 wlan0</div></pre></td></tr></table></figure></p>
+<p>解释一下：用 <code>wlan0</code> 这个无线设备来抓取 <code>bssid</code>为   <code>D8:24:BD:2F:C5:50</code>，在<code>Channel</code>(频道1)上的WiFi的包，并保持在本地<code>home</code>文件夹下，保持的包名称为：<code>Ciscotest</code><br><code>-w</code> 后面填写 自定义的握手包的名称  <code>-c</code> 后面填写 目标WiFi的频道 <code>--bssid</code> 后面填写 目标WiFi的<code>bssid</code> 最后 填写你的wifi设备<br>这个时候就开始抓包了效果如下：<br><img src="http://ombgvjpli.bkt.clouddn.com/zhuabao.png" alt="image"><br>现在右上角的状态是：<code>fixed channel wlan0</code> 表示正在抓包<br>为了加速握手包的获取，我们可以使用aireplay来给AP发送断开包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aireplay-ng -0 0 -a D8:24:BD:2F:C5:50 wlan0</div></pre></td></tr></table></figure></p>
+<p>解释：<code>-0</code>为模式中的一种：冲突攻击模式，后面跟发送次数（设置为0，则为循环攻击，不停的断开连接，客户端无法正常上网，<code>-a</code> 指定无线AP的mac地址，即为该无线网的bssid值,<code>wlan0</code> 你的无线设备<br><img src="http://ombgvjpli.bkt.clouddn.com/aireplay.png" alt="image"><br>这里如果 冲突攻击模式 一次执行不成功的话，那么就再来几次，直至 抓到包为止，本图中，我就执行了2次冲突攻击模式才 成功。<br>执行WiFi攻击的时候，我们一般调用3个窗口：<br><img src="http://ombgvjpli.bkt.clouddn.com/chuangkou.png" alt="image"><br>左上角 是 扫描 周围的WiFi<br>右上角 是 抓取目标WiFi的握手包<br>最下面 是 执行冲突攻击模式 用来加快握手包的获取<br>通过观察 抓包窗口的右上角 可以判断 是否 获取到握手包<br><img src="http://ombgvjpli.bkt.clouddn.com/wifibao.png" alt="image"><br>此刻 右上角显示为 : <code>WPA handshake:D8:24:BD:2F:C5:50</code><br>这表示已经获取到了握手包了。<br>找到文件夹下的握手包<br><img src="http://ombgvjpli.bkt.clouddn.com/wenjianjaibao.png" alt="image"><br>这里的 <code>.cap</code> 文件 就是 我们要得到的握手包<br>这样就成功了一大半了，剩下的就是 用 工具来跑 这个握手包了。  </p>
+<h1 id="Kali-Linux下使用aircrack-ng来跑包"><a href="#Kali-Linux下使用aircrack-ng来跑包" class="headerlink" title="Kali Linux下使用aircrack-ng来跑包"></a>Kali Linux下使用aircrack-ng来跑包</h1><p>跑包很关键，成功与否在于WiFi密码的复杂程度和字典的质量，当然与你的CPU的速度也息息相关。<br>在 i5 3470 CPU的台式机 跑字典速度 大概是10000 个/秒<br>在 i7 4710MQ CPU的笔记本上 跑字典速度 大概是 40000   个/秒（这个时候温度会很高） 鲁大师 节能模式下跑 速度大概是 30000   个/秒，而且温度不会飚高  。</p>
+<p>下面来在Kali下使用自带的aircrack-ng来跑包：<br>格式是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aircrack-ng 握手包 -w 字典</div></pre></td></tr></table></figure></p>
+<p>跑包示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">aircrack-ng &apos;/home/kali/Ciscotest-01.cap&apos; -w &apos;/media/kali/iso/life/图片/零散/图片马/HTML/弱口令集合/弱口令集合/5万密码.txt&apos;</div></pre></td></tr></table></figure></p>
+<p>我这里用的一个5万密码字典，密码在最后一行：<br><img src="http://ombgvjpli.bkt.clouddn.com/5W.png" alt="image">   </p>
+<h1 id="Windows下使用EWSA来跑包"><a href="#Windows下使用EWSA来跑包" class="headerlink" title="Windows下使用EWSA来跑包"></a>Windows下使用EWSA来跑包</h1><p>EWSA 是目前来说公认跑包最快的软件了，因为它支持 CPU和GPU一起跑包，这样就大大提高了跑包的速率了  。<br>用由于这款软件是收费的，这里我就上传一下本人使用的 5.9EWSA破解版本(自行百度)<br>EWSA是图形化操作的，所以使用起来几乎没有什么门槛。<br>首先导入包，然后选中字典，最后爆破。就是这么简单。<br>这里要注意的就是,EWSA 默认开启密码突变选项，如果这里不取消勾选的话，破解速度就会慢很多。<br><img src="http://ombgvjpli.bkt.clouddn.com/testgouxuan.png" alt="image"><br>下面来演示下，windows下使用eswa来跑字典包(速度比kali下要快很多)：<br><img src="http://ombgvjpli.bkt.clouddn.com/wifi.gif" alt="image"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+    <p><span>Title:</span><a href="/2016/10/14/wifi/">无线安全之破解WPA/WPA2 加密ＷiFi</a></p>
+ 
+    <!-- modify author information
+    <p><span>Author:...
+    -->
+    <p><span>Author:</span>国光</p>
+ 
+    <p><span>Created:</span>2016-10-14, 17:19:40</p>
+    <p><span>Updated:</span>2017-08-11, 09:03:36</p>
+    <p>
+        <span>...
+        <script> var clipboard = new Clipboard('.copy-path'); </script>
+    </p>
+ 
+    <!-- not to show license information
+    <p>
+        <span>...
+    </p>
+    -->
+</div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/11/29/pentestbox/">
+                    PentestBox简明使用教程
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/10/04/diykali/">
+                    开启你的kali linux DIY之旅(基于kali linux2016.2)
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#准备"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#抓包"><span class="toc-number">2.</span> <span class="toc-text">抓包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kali-Linux下使用aircrack-ng来跑包"><span class="toc-number">3.</span> <span class="toc-text">Kali Linux下使用aircrack-ng来跑包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows下使用EWSA来跑包"><span class="toc-number">4.</span> <span class="toc-text">Windows下使用EWSA来跑包</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a> 
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"无线安全之破解WPA/WPA2 加密ＷiFi　| StupidDog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/11/29/pentestbox/" title="Pre: PentestBox简明使用教程">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/10/04/diykali/" title="Next: 开启你的kali linux DIY之旅(基于kali linux2016.2)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/博客换成hexo的小记/">博客换成hexo的小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/hexo/">Hexo博客配置笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/23/dpmsf/">Deepin Linux下的Metasploit安装及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/15/pentester/">Pentester中的XSS详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/14/docker/">Docker入门简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/29/pentestbox/">PentestBox简明使用教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/wifi/">无线安全之破解WPA/WPA2 加密ＷiFi</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/04/diykali/">开启你的kali linux DIY之旅(基于kali linux2016.2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/04/web/">信息收集之网站镜像克隆</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Dogboy
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

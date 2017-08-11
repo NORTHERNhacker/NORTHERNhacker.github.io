@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Dogboy" />
+
+
+
+<meta name="description" content="Docker是基于Go语言实现的云开源项目，是基于Linux的多项开源技术提供高效、敏捷和轻量级的容器方案。创建于2013年初。自从开源后就受到了广泛的关注，从长远的眼光来看，Docker是未来虚拟化的一个发展的趋势。带来了更轻量快捷的的体验，一台主机可以同时运行数千个Docker容器，而且在性能上几乎不会损耗。">
+<meta name="keywords" content="docker,虚拟化,运维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker入门简明教程">
+<meta property="og:url" content="http://northernhacker.github.io/2017/01/14/docker/index.html">
+<meta property="og:site_name" content="StupidDog">
+<meta property="og:description" content="Docker是基于Go语言实现的云开源项目，是基于Linux的多项开源技术提供高效、敏捷和轻量级的容器方案。创建于2013年初。自从开源后就受到了广泛的关注，从长远的眼光来看，Docker是未来虚拟化的一个发展的趋势。带来了更轻量快捷的的体验，一台主机可以同时运行数千个Docker容器，而且在性能上几乎不会损耗。">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/docker.jpeg">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/88714E7C-87CB-4DEE-BB7B-0D9A01C68D13.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/3E3BB09A-31F0-49CB-B7E9-4FC59A612EBC.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/0F6A0A70-B3A0-4E42-8952-1A21FFBEC4E3.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/B5463122-4C32-43ED-8073-D2A6D9386CA0.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/F39A33FA-9952-4138-851A-461045FD671D.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/D1EA24E1-EDFA-4E76-BAD6-DB4535E3003C.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/D73BD987-99AC-489F-9BA4-F4A1A5960B0B.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/DF15C96A-AE9E-45E7-8728-0AE372B545FD.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/A4ACEBFF-F22D-457A-93C9-8FA0B3054856.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/E3B69162-C451-4FF1-B660-B0389EE79311.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/10E7BC8A-6F74-4EF4-9250-96E4C9882436.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/9EAB4FC8-C373-4FCB-81C8-B05D62CF80F6.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/ECC5F51E-3DF2-47A5-92C1-ABEE35C82E70.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/916FE5B3-754B-457E-828D-B073E77A2897.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/2FD4A7F4-C7D7-4BBF-BBDF-380929CAAD40.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/9890C8CB-3244-4591-B643-5FA0176C4B11.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/72571C3B-1F0D-4B52-B10E-DF042A76C346.png">
+<meta property="og:image" content="http://ombgvjpli.bkt.clouddn.com/D8F27A37-128F-4AD0-80A9-C29ABE04E670.png">
+<meta property="og:updated_time" content="2017-08-11T01:00:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker入门简明教程">
+<meta name="twitter:description" content="Docker是基于Go语言实现的云开源项目，是基于Linux的多项开源技术提供高效、敏捷和轻量级的容器方案。创建于2013年初。自从开源后就受到了广泛的关注，从长远的眼光来看，Docker是未来虚拟化的一个发展的趋势。带来了更轻量快捷的的体验，一台主机可以同时运行数千个Docker容器，而且在性能上几乎不会损耗。">
+<meta name="twitter:image" content="http://ombgvjpli.bkt.clouddn.com/docker.jpeg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="StupidDog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Docker入门简明教程 | StupidDog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Dogboy</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:1732164513@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HelloWorld/">HelloWorld</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali-Linux/">Kali Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metasploit/">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PentestBox/">PentestBox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diy/">diy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi破解/">wifi破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xss/">xss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信息收集/">信息收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无线安全/">无线安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/渗透测试/">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神器/">神器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟化/">虚拟化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Dogboy</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Dogboy</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:1732164513@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-docker" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/14/docker/" class="article-date">
+      <time datetime="2017-01-14T09:19:40.000Z" itemprop="datePublished">2017-01-14</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker入门简明教程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/others/">others</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟化/">虚拟化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><center><img src="http://ombgvjpli.bkt.clouddn.com/docker.jpeg" alt="image"></center><br>Docker是基于Go语言实现的云开源项目，是基于Linux的多项开源技术提供高效、敏捷和轻量级的容器方案。创建于2013年初。自从开源后就受到了广泛的关注，从长远的眼光来看，Docker是未来虚拟化的一个发展的趋势。带来了更轻量快捷的的体验，一台主机可以同时运行数千个Docker容器，而且在性能上几乎不会损耗。<br><a id="more"></a></p>
+<h1 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Docker是基于Go语言实现的云开源项目，是基于Linux的多项开源技术提供高效、敏捷和轻量级的容器方案。创建于2013年初。自从开源后就受到了广泛的关注，从长远的眼光来看，Docker是未来虚拟化的一个发展的趋势。</p>
+<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><p>1.一次构建，处处运行，带来了更快速的交付和部署和更轻松的迁移和扩展。<br>2.对系统内核进行抽象，带来了更轻量快捷的的体验，一台主机可以同时运行数千个Docker容器，而且在性能上几乎不会损耗。<br>Docker1.1.2中Ubuntu14.04主机与Ubuntu14.04Docker容器性能测试  </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>性能测试工具</th>
+<th>物理主机</th>
+<th>Docker</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>sysbench</td>
+<td>1</td>
+<td>0.9945</td>
+</tr>
+<tr>
+<td>写内存</td>
+<td>sysbench</td>
+<td>1</td>
+<td>0.9826</td>
+</tr>
+<tr>
+<td>读内存</td>
+<td>sysbench</td>
+<td>1</td>
+<td>1.0025</td>
+</tr>
+<tr>
+<td>磁盘I O</td>
+<td>dd</td>
+<td>1</td>
+<td>0.9811</td>
+</tr>
+<tr>
+<td>网络</td>
+<td>iperf</td>
+<td>1</td>
+<td>0.9626</td>
+</tr>
+</tbody>
+</table>
+<p>从数值上看，物理主机与Docker容器之间的性能差异不大，二者速度几乎一样。</p>
+<h2 id="基本组件"><a href="#基本组件" class="headerlink" title="基本组件"></a>基本组件</h2><p><strong>镜像</strong>:镜像是构建Docker世界的基石。用户的一切操作都是基于镜像来运行自己的容器的。同时镜像也是Docker的“构建”部分，也可以把镜像当作容器的”源代码”，镜像体积很小，便携性高，易分享、存储和更新。<br><strong>容器</strong>:容器是基于镜像启动起来的，用户只需要把自己的应用程序或服务打包放进容器即可。容器中可以运行一个或多个进程，是Docker的启动和执行阶段。</p>
+<h1 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h1><h2 id="安装Docker的前提条件"><a href="#安装Docker的前提条件" class="headerlink" title="安装Docker的前提条件"></a>安装Docker的前提条件</h2><p>运行64位CPU架构的计算机（这意味着一些较老的机器可能无法安装Docker）<br>Linux系统的话，得运行Linux3.8内核及其以上的版本，一些老版本的2.6x内核运行可能会出现一些无法预料的bug</p>
+<h2 id="windows安装Dokcer"><a href="#windows安装Dokcer" class="headerlink" title="windows安装Dokcer"></a>windows安装Dokcer</h2><p>官网直接下载安装包: <a href="https://download.docker.com/win/stable/InstallDocker.msi" target="_blank" rel="external">https://download.docker.com/win/stable/InstallDocker.msi</a><br>然后直接运行来安装Docker，开启Hyper-V(这个阶段可能需要重启),有可用更新的话，就安装 更新。<br>小提示:windows下的Docker启动貌似有点慢，不知道是不是我这龟速的机械硬盘的原因。<br><img src="http://ombgvjpli.bkt.clouddn.com/88714E7C-87CB-4DEE-BB7B-0D9A01C68D13.png" alt="image"><br>dokcer完全启动后，是这样样子的：<br><img src="http://ombgvjpli.bkt.clouddn.com/3E3BB09A-31F0-49CB-B7E9-4FC59A612EBC.png" alt="image"><br>验证docker是否安装成功:在命令提示符下输入:<code>docker</code><br>出现下面这张图即安装成功:<br><img src="http://ombgvjpli.bkt.clouddn.com/0F6A0A70-B3A0-4E42-8952-1A21FFBEC4E3.png" alt="image">   </p>
+<h2 id="Mac-OS安装Docker"><a href="#Mac-OS安装Docker" class="headerlink" title="Mac OS安装Docker"></a>Mac OS安装Docker</h2><p>首先安装Virtual Box，官网下载：<a href="https://www.virtualbox.org" target="_blank" rel="external">https://www.virtualbox.org</a><br>Virtual box安装完了再安装Docker<br>Docker官网直接下载安装包: <a href="https://download.docker.com/mac/stable/Docker.dmg" target="_blank" rel="external">https://download.docker.com/mac/stable/Docker.dmg</a><br>Mac下安装启动就很快了。<br>然后在终端下输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker</div></pre></td></tr></table></figure></p>
+<p>注意:Mac和Linux下必须得以==root==身份才可以稳定运行docker,<br>效果如下:<br><img src="http://ombgvjpli.bkt.clouddn.com/B5463122-4C32-43ED-8073-D2A6D9386CA0.png" alt="image">  </p>
+<h2 id="Ubuntu安装Docker"><a href="#Ubuntu安装Docker" class="headerlink" title="Ubuntu安装Docker"></a>Ubuntu安装Docker</h2><p>Linux安装要简单的多，毕竟Docker一开始就是基于Linux提出来的。<br>首先以root身份终端下输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install docker.io</div></pre></td></tr></table></figure></p>
+<p>然后就没有然后了，1条命令即可安装<br><img src="http://ombgvjpli.bkt.clouddn.com/F39A33FA-9952-4138-851A-461045FD671D.png" alt="image"><br>root身份终端下输入：<code>docker</code><br>查看安装是否成功：<br><img src="http://ombgvjpli.bkt.clouddn.com/D1EA24E1-EDFA-4E76-BAD6-DB4535E3003C.png" alt="image"></p>
+<h1 id="Dokcer入门"><a href="#Dokcer入门" class="headerlink" title="Dokcer入门"></a>Dokcer入门</h1><h2 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h2><p>Dokcer通过<a href="https://hub.docker.com/" target="_blank" rel="external">Dokcer Hub</a>搭建镜像共享生态系统，这意味着我们可以直接下载其他人已经打包好的镜像。<br>使用docker search 命令在Docker HUB中搜索镜像<br>这里我们以搜索Ubuntu镜像为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker search ubuntu</div></pre></td></tr></table></figure></p>
+<p><img src="http://ombgvjpli.bkt.clouddn.com/D73BD987-99AC-489F-9BA4-F4A1A5960B0B.png" alt="image"><br>一般我们下载靠前面的镜像，一般带有Ubuntu、centos并且靠前的镜像都是官方镜像，其他的都是用户自己创建并共享的镜像。</p>
+<h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>下面从Docker Hub下载Ubuntu镜像<br>终端输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull ubuntu</div></pre></td></tr></table></figure></p>
+<p>Docker默认是下载最新版本的Ubuntu镜像<br><img src="http://ombgvjpli.bkt.clouddn.com/DF15C96A-AE9E-45E7-8728-0AE372B545FD.png" alt="image"><br>镜像一般都很小的，网速快的话可以分分钟下载完。</p>
+<h2 id="列出下载的镜像"><a href="#列出下载的镜像" class="headerlink" title="列出下载的镜像"></a>列出下载的镜像</h2><p>下面列出本地主机中已经下载的docker镜像<br> 终端输入：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker images</div></pre></td></tr></table></figure></p>
+<p> <img src="http://ombgvjpli.bkt.clouddn.com/A4ACEBFF-F22D-457A-93C9-8FA0B3054856.png" alt="image"><br> 可以看到我们刚刚下载的Ubuntu镜像，大小才129MB,是4周前更新的版本</p>
+<h2 id="创建并使用容器"><a href="#创建并使用容器" class="headerlink" title="创建并使用容器"></a>创建并使用容器</h2><p>使用run命令即可用镜像来创建一个容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">docker run -i -t --name hellodocker ubuntu /bin/bash</div><div class="line"></div><div class="line">命令格式为：docker run &lt;选项参数&gt;  &lt;镜像名称&gt; &lt;要运行的文件&gt;</div><div class="line"></div><div class="line">&gt;使用 -i、-t选项可以在运行的Bash shell中进行输入与输出</div><div class="line">&gt;使用—name可以指定容器的名称。如果不指定的话，docker默认会自动生成随机的名称进行指定。</div></pre></td></tr></table></figure></p>
+<p>再回看这行命令大概就明白了它的意思：使用ubuntu这个镜像来创建一个 名为hellodocker 的容器<br>当我们创建容器后，默认就进入了容器，此时使用cd、ls等命令发现已经不是我们物理机上的ubutu了。<br><img src="http://ombgvjpli.bkt.clouddn.com/E3B69162-C451-4FF1-B660-B0389EE79311.png" alt="image">  </p>
+<h2 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h2><p>终端输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exit</div></pre></td></tr></table></figure></p>
+<p>从Bash shell退出，因为在Ubuntu镜像中直接运行/bin/bash 可执行文件，所以退出后 容器也会终止（stop）<br>就这样我们创建运行并退出了一个容器，现在自己再亲手创建个容器试试看吧.-v-  </p>
+<h2 id="查看容器列表"><a href="#查看容器列表" class="headerlink" title="查看容器列表"></a>查看容器列表</h2><p>终端输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps -a</div></pre></td></tr></table></figure></p>
+<p>查看本地的所有容器的详细信息<br><img src="http://ombgvjpli.bkt.clouddn.com/10E7BC8A-6F74-4EF4-9250-96E4C9882436.png" alt="image"><br>可以看到，除了我们第一个创建的名为 hellodocker外，还发现了我后来新建的GG容器，他们都是Exited(退出状态)，这里还可以看到他们的ID、所使用的镜像、创建时间、端口等信息  </p>
+<h2 id="使用start命令来启动容器"><a href="#使用start命令来启动容器" class="headerlink" title="使用start命令来启动容器"></a>使用start命令来启动容器</h2><p>到这里机智的小伙伴们可能产生疑问了：第一次创建容器是默认就进入了容器，那么在我们 exit 退出容器之后如何唤醒我们的容器呢？<br>表急，其实docker早已考虑到了这个，我们在终端下输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker start hellodocker</div></pre></td></tr></table></figure></p>
+<p>来启动名为hellodocker的容器,所以启动docker容器的命令就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker start 容器名</div></pre></td></tr></table></figure></p>
+<p>来启动名为hellodocker的容器,所以启动docker容器的命令就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker start 容器名</div></pre></td></tr></table></figure></p>
+<h2 id="使用restart命令来重启容器"><a href="#使用restart命令来重启容器" class="headerlink" title="使用restart命令来重启容器"></a>使用restart命令来重启容器</h2><p>与重启系统一样，也可以直接使用如下命令来重启某个容器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker restart hellodocker</div></pre></td></tr></table></figure></p>
+<h2 id="使用attach命令连接容器"><a href="#使用attach命令连接容器" class="headerlink" title="使用attach命令连接容器"></a>使用attach命令连接容器</h2><p>前面我们start了一个容器，但是还是默认不进入容器，我们使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps -a</div></pre></td></tr></table></figure></p>
+<p>来查看容器的运行情况：<br><img src="http://ombgvjpli.bkt.clouddn.com/9EAB4FC8-C373-4FCB-81C8-B05D62CF80F6.png" alt="image"><br>可以看到hellodocker这个容器已经启动了4秒多了，说明容器已经在运行了，那么我们怎么来连接启动的docker容器呢？<br>终端输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker attach hellodocker</div></pre></td></tr></table></figure></p>
+<p>来连接已经在后台启动的docker容器<br><img src="http://ombgvjpli.bkt.clouddn.com/ECC5F51E-3DF2-47A5-92C1-ABEE35C82E70.png" alt="image"><br>小提示:这里得 按下 回车  才进入容器，不要傻等，几分钟内都没有什么反应的（不要问我怎么知道的，心酸。。。）</p>
+<h2 id="Docker系统统计信息"><a href="#Docker系统统计信息" class="headerlink" title="Docker系统统计信息"></a>Docker系统统计信息</h2><p>终端下输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker stats</div></pre></td></tr></table></figure></p>
+<p>用来显示一个或多个容器的统计信息，可以看到容器的ID、CPU占用率、内存使用率、网速等信息<br><img src="http://ombgvjpli.bkt.clouddn.com/916FE5B3-754B-457E-828D-B073E77A2897.png" alt="image"></p>
+<h2 id="终止容器"><a href="#终止容器" class="headerlink" title="终止容器"></a>终止容器</h2><p>要终止容器的话，首先docker ps -a列出后台正在运行的容器<br>然后终端输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker stop hellodocker</div></pre></td></tr></table></figure></p>
+<p>终止了我们刚启动不久的hellodocker 容器</p>
+<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><p>如果容器不再使用可以使用如下命令删除:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rm GG</div></pre></td></tr></table></figure></p>
+<p>删除了GG的容器（你要删除的容器必须已经停止运行了）</p>
+<h2 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h2><p>如果镜像不再使用可以使用如下命令删除：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rmi ubuntu</div></pre></td></tr></table></figure></p>
+<p>删除了本地的ubuntu镜像（此刻必须删除所有运行在这个镜像上的容器）<br><img src="http://ombgvjpli.bkt.clouddn.com/2FD4A7F4-C7D7-4BBF-BBDF-380929CAAD40.png" alt="image"><br>OK Docker的入门命令就教到这里了，下面我们来实战一把吧。</p>
+<h1 id="打造属于你自己的Kali"><a href="#打造属于你自己的Kali" class="headerlink" title="打造属于你自己的Kali"></a>打造属于你自己的Kali</h1><p>一般我们搞信息安全的难免都会用到Kali Linux,如果不想安装累赘的虚拟机或者不想折腾更新源等那么该肿么办呢？现在有了Docker，这一切的问题都不再是问题，使用Docker来运行Kali，更加轻便快捷，而且可以ping通物理机的C段，用来实战的话再合适不过了。<br>秀个主题先：<br><img src="http://ombgvjpli.bkt.clouddn.com/9890C8CB-3244-4591-B643-5FA0176C4B11.png" alt="image"><br>安装了Mac OS的主题后，Ubuntu也感觉不再那么难用了。（嘿嘿 不扯了 赶紧步入正题了）</p>
+<h2 id="首先搜索下可用的Kali镜像"><a href="#首先搜索下可用的Kali镜像" class="headerlink" title="首先搜索下可用的Kali镜像"></a>首先搜索下可用的Kali镜像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker search kali</div></pre></td></tr></table></figure>
+<p><img src="http://ombgvjpli.bkt.clouddn.com/72571C3B-1F0D-4B52-B10E-DF042A76C346.png" alt="image"><br>出来了一大堆，根据名字可以大概判断出第二个镜像是带有meatsploit的，所以为了日后配置的方便我们这里直接来下载第二个镜像。</p>
+<h2 id="下载Kali-镜像"><a href="#下载Kali-镜像" class="headerlink" title="下载Kali 镜像"></a>下载Kali 镜像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull linuxkonsult/kali-metasploit</div></pre></td></tr></table></figure>
+<p>下载带有msf的kali镜像（镜像不大，我这边下载完不到10分钟）</p>
+<h2 id="创建Kali-容器"><a href="#创建Kali-容器" class="headerlink" title="创建Kali 容器"></a>创建Kali 容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">下载带有msf的kali镜像（镜像不大，我这边下载完不到10分钟）</div></pre></td></tr></table></figure>
+<p>用下载的kali镜像创建个名为msfkali的容器</p>
+<h2 id="进入容器查看基本信息"><a href="#进入容器查看基本信息" class="headerlink" title="进入容器查看基本信息"></a>进入容器查看基本信息</h2><p>可以看到kali使用的是默认源，这里我要说一下，kali 2016.X版本的kali使用这个默认官方源就好，<br>这个默认的官方源会自动选择速度最快的镜像站点来下载的，切记：==不要换这个更新源==。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">root@42e13a2e4c0d:/# cat /etc/apt/sources.list</div><div class="line">deb http://http.kali.org/kali kali-rolling main contrib non-free</div><div class="line">deb-src http://http.kali.org/kali kali-rolling main contrib non-free</div></pre></td></tr></table></figure></p>
+<p>终端输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">msfconsole</div></pre></td></tr></table></figure></p>
+<p>可以看到默认是带metasploit的，看来我们之前猜的没错<br><img src="http://ombgvjpli.bkt.clouddn.com/D8F27A37-128F-4AD0-80A9-C29ABE04E670.png" alt="image"><br>除此之外还带了nmap、wget、git等<br>但是这些工具还不够我们完成一次渗透测试</p>
+<h2 id="安装自己需要的工具"><a href="#安装自己需要的工具" class="headerlink" title="安装自己需要的工具"></a>安装自己需要的工具</h2><p>首先先刷新下更新缓存列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get update</div></pre></td></tr></table></figure></p>
+<p>然后就可以直接安装工具了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install 工具名</div></pre></td></tr></table></figure></p>
+<p>这里你需要什么工具就安装什么工具，速度很快的，用什么就安装什么，没有什么比这个更DIY的了。<br>举个例子：你想安装个aircrack来破解WiFi密码，那么就直接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install aircrack-ng</div></pre></td></tr></table></figure></p>
+<p>总之，这个Kali Docker就是Kali的命令行，和正常是Kali一模一样，该怎么折腾就怎么折腾吧。<br>小结：Docker从长远眼光来看是一个趋势，虽然起初刚刚学习需要投入些时间，但是当你熟练Docker的时候，才会发现它的真正强大之处，从现在来看已经可以完全替代PentestBox了，当然Docker的作用不仅仅这么简单，博客以后会继续更新Docker更加深入的文章的。</p>
+<h1 id="Mac-OS下Kali-Docker效果演示"><a href="#Mac-OS下Kali-Docker效果演示" class="headerlink" title="Mac OS下Kali Docker效果演示"></a>Mac OS下Kali Docker效果演示</h1><p><link rel="stylesheet" type="text/css" href="http://obgutsg63.bkt.clouddn.com/asciinema-player.css"></p>
+<p><asciinema-player src="http://ombgvjpli.bkt.clouddn.com/tmpk6v1v2gb-asciinema.json" cols="158" rows="46"></asciinema-player></p>
+<script src="http://obgutsg63.bkt.clouddn.com/asciinema-player.js"></script>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+    <p><span>Title:</span><a href="/2017/01/14/docker/">Docker入门简明教程</a></p>
+ 
+    <!-- modify author information
+    <p><span>Author:...
+    -->
+    <p><span>Author:</span>国光</p>
+ 
+    <p><span>Created:</span>2017-01-14, 17:19:40</p>
+    <p><span>Updated:</span>2017-08-11, 09:00:43</p>
+    <p>
+        <span>...
+        <script> var clipboard = new Clipboard('.copy-path'); </script>
+    </p>
+ 
+    <!-- not to show license information
+    <p>
+        <span>...
+    </p>
+    -->
+</div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/02/15/pentester/">
+                    Pentester中的XSS详解
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/11/29/pentestbox/">
+                    PentestBox简明使用教程
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker简介"><span class="toc-number">1.</span> <span class="toc-text">Docker简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优势"><span class="toc-number">1.2.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本组件"><span class="toc-number">1.3.</span> <span class="toc-text">基本组件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker安装"><span class="toc-number">2.</span> <span class="toc-text">Docker安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Docker的前提条件"><span class="toc-number">2.1.</span> <span class="toc-text">安装Docker的前提条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windows安装Dokcer"><span class="toc-number">2.2.</span> <span class="toc-text">windows安装Dokcer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mac-OS安装Docker"><span class="toc-number">2.3.</span> <span class="toc-text">Mac OS安装Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu安装Docker"><span class="toc-number">2.4.</span> <span class="toc-text">Ubuntu安装Docker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dokcer入门"><span class="toc-number">3.</span> <span class="toc-text">Dokcer入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索镜像"><span class="toc-number">3.1.</span> <span class="toc-text">搜索镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载镜像"><span class="toc-number">3.2.</span> <span class="toc-text">下载镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列出下载的镜像"><span class="toc-number">3.3.</span> <span class="toc-text">列出下载的镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建并使用容器"><span class="toc-number">3.4.</span> <span class="toc-text">创建并使用容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#退出容器"><span class="toc-number">3.5.</span> <span class="toc-text">退出容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看容器列表"><span class="toc-number">3.6.</span> <span class="toc-text">查看容器列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用start命令来启动容器"><span class="toc-number">3.7.</span> <span class="toc-text">使用start命令来启动容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用restart命令来重启容器"><span class="toc-number">3.8.</span> <span class="toc-text">使用restart命令来重启容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用attach命令连接容器"><span class="toc-number">3.9.</span> <span class="toc-text">使用attach命令连接容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker系统统计信息"><span class="toc-number">3.10.</span> <span class="toc-text">Docker系统统计信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#终止容器"><span class="toc-number">3.11.</span> <span class="toc-text">终止容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除容器"><span class="toc-number">3.12.</span> <span class="toc-text">删除容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除镜像"><span class="toc-number">3.13.</span> <span class="toc-text">删除镜像</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#打造属于你自己的Kali"><span class="toc-number">4.</span> <span class="toc-text">打造属于你自己的Kali</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先搜索下可用的Kali镜像"><span class="toc-number">4.1.</span> <span class="toc-text">首先搜索下可用的Kali镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载Kali-镜像"><span class="toc-number">4.2.</span> <span class="toc-text">下载Kali 镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建Kali-容器"><span class="toc-number">4.3.</span> <span class="toc-text">创建Kali 容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进入容器查看基本信息"><span class="toc-number">4.4.</span> <span class="toc-text">进入容器查看基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装自己需要的工具"><span class="toc-number">4.5.</span> <span class="toc-text">安装自己需要的工具</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mac-OS下Kali-Docker效果演示"><span class="toc-number">5.</span> <span class="toc-text">Mac OS下Kali Docker效果演示</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a> 
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Docker入门简明教程　| StupidDog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/02/15/pentester/" title="Pre: Pentester中的XSS详解">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/11/29/pentestbox/" title="Next: PentestBox简明使用教程">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/10/博客换成hexo的小记/">博客换成hexo的小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/hexo/">Hexo博客配置笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/23/dpmsf/">Deepin Linux下的Metasploit安装及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/15/pentester/">Pentester中的XSS详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/14/docker/">Docker入门简明教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/29/pentestbox/">PentestBox简明使用教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/wifi/">无线安全之破解WPA/WPA2 加密ＷiFi</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/04/diykali/">开启你的kali linux DIY之旅(基于kali linux2016.2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/04/web/">信息收集之网站镜像克隆</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Dogboy
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
