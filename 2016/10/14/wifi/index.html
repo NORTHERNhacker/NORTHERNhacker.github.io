@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-Hans">
 <head>
 
     <!--[if lt IE 9]>
@@ -42,11 +42,9 @@
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
 
-    <link rel="alternate" href="/atom.xml" title="StupidDog" type="application/atom+xml">
 
 
-
-    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="shortcut icon" href="/img/favicon.ico">
 
 
 
@@ -183,9 +181,7 @@
                             
                                 <a class="fa Email" href="mailto:1732164513@qq.com" title="Email"></a>
                             
-                                <a class="fa GitHub" href="#" title="GitHub"></a>
-                            
-                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                                <a class="fa GitHub" href="https://github.com/NORTHERNhacker" title="GitHub"></a>
                             
                         </ul>
                     </nav>
@@ -203,11 +199,13 @@
                 <section class="switch-part switch-part3">
                     <div id="js-friends">
                     
-                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                      <a class="main-nav-link switch-friends-link" href="http://www.sqlsec.com/">国光</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                      <a class="main-nav-link switch-friends-link" href="http://wiki.ioin.in/">安全文摘</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                      <a class="main-nav-link switch-friends-link" href="http://hacktech.cn">Akkuman</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.lz1y.cn">Lz1y&#39;s blog</a>
                     
                     </div>
                 </section>
@@ -217,7 +215,7 @@
                 
                 <section class="switch-part switch-part4">
                 
-                    <div id="js-aboutme">专注于前端</div>
+                    <div id="js-aboutme">垃圾如我当积跬步以求行千里</div>
                 </section>
                 
             </div>
@@ -259,9 +257,7 @@
                             
                                 <a class="fa Email" target="_blank" href="mailto:1732164513@qq.com" title="Email"></a>
                             
-                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
-                            
-                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                                <a class="fa GitHub" target="_blank" href="https://github.com/NORTHERNhacker" title="GitHub"></a>
                             
                         </ul>
             </nav>
@@ -543,6 +539,23 @@
         }
     
 </script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
