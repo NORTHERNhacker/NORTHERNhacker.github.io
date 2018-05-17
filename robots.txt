@@ -1,0 +1,11 @@
+User-Agent: *
+Allow: /
+Disallow: /background
+Disallow: /css
+Disallow: /fancybox
+Disallow: /font-awesome
+Disallow: /img
+Disallow: /js
+Sitemap: https://blog.hackdog.cn/sitemap.xml
+Sitemap: https://blog.hackdog.cn/baidusitemap.xml
+
