@@ -1,0 +1,10 @@
+https://blog.hackdog.cn/2018/03/27/php代码再学习-长期开坑-为进一步学习代码审计做准备/
+https://blog.hackdog.cn/2017/08/10/博客换成hexo的小记/
+https://blog.hackdog.cn/2017/07/19/hexo/
+https://blog.hackdog.cn/2017/03/23/dpmsf/
+https://blog.hackdog.cn/2017/02/15/pentester/
+https://blog.hackdog.cn/2017/01/14/docker/
+https://blog.hackdog.cn/2016/11/29/pentestbox/
+https://blog.hackdog.cn/2016/10/14/wifi/
+https://blog.hackdog.cn/2016/10/04/diykali/
+https://blog.hackdog.cn/2016/10/04/web/
