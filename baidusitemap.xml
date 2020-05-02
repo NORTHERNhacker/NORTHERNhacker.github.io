@@ -4,21 +4,36 @@
 
     
   <url>
-    <loc>https://blog.hackdog.cn/2018/03/27/php%E4%BB%A3%E7%A0%81%E5%86%8D%E5%AD%A6%E4%B9%A0-%E9%95%BF%E6%9C%9F%E5%BC%80%E5%9D%91-%E4%B8%BA%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%81%9A%E5%87%86%E5%A4%87/</loc>
-    <lastmod>2018-03-27T11:44:36.000Z</lastmod>
+    <loc>http://blog.hackdog.cn/2020/05/03/%E6%8B%96%E5%BB%B6%E7%97%87%E6%82%A3%E8%80%85%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%81/</loc>
+    <lastmod>2020-05-02T16:50:34.436Z</lastmod>
     <data>
         <display>
-        <title>php再学习(长期开坑,为进一步学习代码审计做准备)</title>
-        <pubTime>2018-03-27T08:03:18.000Z</pubTime>
+        <title>拖延症患者回来了！</title>
+        <pubTime>2020-05-02T16:11:36.000Z</pubTime>
         
-        <tag>代码审计</tag>
          
-        <tag>php</tag>
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.hackdog.cn/2016/10/04/diykali/</loc>
+    <lastmod>2020-05-02T16:03:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>开启你的kali linux DIY之旅(基于kali linux2016.2)</title>
+        <pubTime>2016-10-04T09:19:40.000Z</pubTime>
+        
+        <tag>Kali Linux</tag>
+         
+        <tag>diy</tag>
          
          
            
              
-              <breadCrumb title="hacker" url="https://blog.hackdog.cn/categories/hacker/"/>
+              <breadCrumb title="hacker" url="http://blog.hackdog.cn/categories/hacker/"/>
           
         </display>
     </data>
@@ -26,8 +41,32 @@
 
     
   <url>
-    <loc>https://blog.hackdog.cn/2017/08/10/%E5%8D%9A%E5%AE%A2%E6%8D%A2%E6%88%90hexo%E7%9A%84%E5%B0%8F%E8%AE%B0/</loc>
-    <lastmod>2018-03-21T16:41:54.000Z</lastmod>
+    <loc>http://blog.hackdog.cn/2016/10/04/web/</loc>
+    <lastmod>2020-05-02T16:03:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>信息收集之网站镜像克隆</title>
+        <pubTime>2016-10-04T09:19:40.000Z</pubTime>
+        
+        <tag>Kali Linux</tag>
+         
+        <tag>信息收集</tag>
+         
+        <tag>渗透测试</tag>
+         
+         
+           
+             
+              <breadCrumb title="hacker" url="http://blog.hackdog.cn/categories/hacker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.hackdog.cn/2017/08/10/%C3%A5%C2%8D%C2%9A%C3%A5%C2%AE%C2%A2%C3%A6%C2%8D%C2%A2%C3%A6%C2%88%C2%90hexo%C3%A7%C2%9A%C2%84%C3%A5%C2%B0%C2%8F%C3%A8%C2%AE%C2%B0/</loc>
+    <lastmod>2020-05-02T16:03:41.000Z</lastmod>
     <data>
         <display>
         <title>博客换成hexo的小记</title>
@@ -46,53 +85,24 @@
     </url>
 
     
-    
-    
   <url>
-    <loc>https://blog.hackdog.cn/2017/03/23/dpmsf/</loc>
-    <lastmod>2017-08-11T01:04:13.000Z</lastmod>
+    <loc>http://blog.hackdog.cn/2018/06/12/%C3%A7%C2%AB%C2%AF%C3%A5%C2%8F%C2%A3%C3%A6%C2%89%C2%AB%C3%A6%C2%8F%C2%8F/</loc>
+    <lastmod>2020-05-02T16:03:41.000Z</lastmod>
     <data>
         <display>
-        <title>Deepin Linux下的Metasploit安装及优化</title>
-        <pubTime>2017-03-23T09:55:55.000Z</pubTime>
+        <title> 端口扫描</title>
+        <pubTime>2018-06-11T16:13:25.000Z</pubTime>
         
-        <tag>Metasploit</tag>
-         
-        <tag>神器</tag>
-         
          
            
-             
-              <breadCrumb title="others" url="https://blog.hackdog.cn/categories/others/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.hackdog.cn/2017/02/15/pentester/</loc>
-    <lastmod>2017-08-11T01:04:01.000Z</lastmod>
-    <data>
-        <display>
-        <title>Pentester中的XSS详解</title>
-        <pubTime>2017-02-14T16:00:00.000Z</pubTime>
-        
-        <tag>xss</tag>
-         
-         
-           
-             
-              <breadCrumb title="hacker" url="https://blog.hackdog.cn/categories/hacker/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.hackdog.cn/2016/10/14/wifi/</loc>
-    <lastmod>2017-08-11T01:03:36.000Z</lastmod>
+    <loc>http://blog.hackdog.cn/2016/10/14/wifi/</loc>
+    <lastmod>2020-05-02T16:03:41.000Z</lastmod>
     <data>
         <display>
         <title>无线安全之破解WPA/WPA2 加密ＷiFi</title>
@@ -107,7 +117,7 @@
          
            
              
-              <breadCrumb title="hacker" url="https://blog.hackdog.cn/categories/hacker/"/>
+              <breadCrumb title="hacker" url="http://blog.hackdog.cn/categories/hacker/"/>
           
         </display>
     </data>
@@ -115,23 +125,21 @@
 
     
   <url>
-    <loc>https://blog.hackdog.cn/2016/10/04/web/</loc>
-    <lastmod>2017-08-11T01:03:15.000Z</lastmod>
+    <loc>http://blog.hackdog.cn/2017/03/23/dpmsf/</loc>
+    <lastmod>2020-05-02T16:03:41.000Z</lastmod>
     <data>
         <display>
-        <title>信息收集之网站镜像克隆</title>
-        <pubTime>2016-10-04T09:19:40.000Z</pubTime>
+        <title>Deepin Linux下的Metasploit安装及优化</title>
+        <pubTime>2017-03-23T09:55:55.000Z</pubTime>
         
-        <tag>Kali Linux</tag>
+        <tag>Metasploit</tag>
          
-        <tag>渗透测试</tag>
-         
-        <tag>信息收集</tag>
+        <tag>神器</tag>
          
          
            
              
-              <breadCrumb title="hacker" url="https://blog.hackdog.cn/categories/hacker/"/>
+              <breadCrumb title="others" url="http://blog.hackdog.cn/categories/others/"/>
           
         </display>
     </data>
@@ -139,21 +147,21 @@
 
     
   <url>
-    <loc>https://blog.hackdog.cn/2017/07/19/hexo/</loc>
-    <lastmod>2017-08-11T01:02:54.000Z</lastmod>
+    <loc>http://blog.hackdog.cn/2018/03/27/php%C3%A4%C2%BB%C2%A3%C3%A7%C2%A0%C2%81%C3%A5%C2%86%C2%8D%C3%A5%C2%AD%C2%A6%C3%A4%C2%B9%C2%A0-%C3%A9%C2%95%C2%BF%C3%A6%C2%9C%C2%9F%C3%A5%C2%BC%C2%80%C3%A5%C2%9D%C2%91-%C3%A4%C2%B8%C2%BA%C3%A8%C2%BF%C2%9B%C3%A4%C2%B8%C2%80%C3%A6%C2%AD%C2%A5%C3%A5%C2%AD%C2%A6%C3%A4%C2%B9%C2%A0%C3%A4%C2%BB%C2%A3%C3%A7%C2%A0%C2%81%C3%A5%C2%AE%C2%A1%C3%A8%C2%AE%C2%A1%C3%A5%C2%81%C2%9A%C3%A5%C2%87%C2%86%C3%A5%C2%A4%C2%87/</loc>
+    <lastmod>2020-05-02T16:03:41.000Z</lastmod>
     <data>
         <display>
-        <title>Hexo博客配置笔记</title>
-        <pubTime>2017-07-19T03:54:19.000Z</pubTime>
+        <title>php再学习(长期开坑,为进一步学习代码审计做准备)</title>
+        <pubTime>2018-03-27T08:03:18.000Z</pubTime>
         
-        <tag>Hexo</tag>
+        <tag>代码审计</tag>
          
-        <tag>笔记</tag>
+        <tag>php</tag>
          
          
            
              
-              <breadCrumb title="others" url="https://blog.hackdog.cn/categories/others/"/>
+              <breadCrumb title="hacker" url="http://blog.hackdog.cn/categories/hacker/"/>
           
         </display>
     </data>
@@ -161,52 +169,8 @@
 
     
   <url>
-    <loc>https://blog.hackdog.cn/2016/11/29/pentestbox/</loc>
-    <lastmod>2017-08-11T01:02:07.000Z</lastmod>
-    <data>
-        <display>
-        <title>PentestBox简明使用教程</title>
-        <pubTime>2016-11-29T09:19:40.000Z</pubTime>
-        
-        <tag>PentestBox</tag>
-         
-        <tag>渗透测试</tag>
-         
-         
-           
-             
-              <breadCrumb title="hacker" url="https://blog.hackdog.cn/categories/hacker/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.hackdog.cn/2016/10/04/diykali/</loc>
-    <lastmod>2017-08-11T01:01:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>开启你的kali linux DIY之旅(基于kali linux2016.2)</title>
-        <pubTime>2016-10-04T09:19:40.000Z</pubTime>
-        
-        <tag>Kali Linux</tag>
-         
-        <tag>diy</tag>
-         
-         
-           
-             
-              <breadCrumb title="hacker" url="https://blog.hackdog.cn/categories/hacker/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.hackdog.cn/2017/01/14/docker/</loc>
-    <lastmod>2017-08-11T01:00:43.000Z</lastmod>
+    <loc>http://blog.hackdog.cn/2017/01/14/docker/</loc>
+    <lastmod>2020-05-02T16:03:41.000Z</lastmod>
     <data>
         <display>
         <title>Docker入门简明教程</title>
@@ -221,11 +185,77 @@
          
            
              
-              <breadCrumb title="others" url="https://blog.hackdog.cn/categories/others/"/>
+              <breadCrumb title="others" url="http://blog.hackdog.cn/categories/others/"/>
           
         </display>
     </data>
     </url>
 
+    
+  <url>
+    <loc>http://blog.hackdog.cn/2016/11/29/pentestbox/</loc>
+    <lastmod>2020-05-02T16:03:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>PentestBox简明使用教程</title>
+        <pubTime>2016-11-29T09:19:40.000Z</pubTime>
+        
+        <tag>渗透测试</tag>
+         
+        <tag>PentestBox</tag>
+         
+         
+           
+             
+              <breadCrumb title="hacker" url="http://blog.hackdog.cn/categories/hacker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.hackdog.cn/2017/02/15/pentester/</loc>
+    <lastmod>2020-05-02T16:03:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>Pentester中的XSS详解</title>
+        <pubTime>2017-02-14T16:00:00.000Z</pubTime>
+        
+        <tag>xss</tag>
+         
+         
+           
+             
+              <breadCrumb title="hacker" url="http://blog.hackdog.cn/categories/hacker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.hackdog.cn/2017/07/19/hexo/</loc>
+    <lastmod>2020-05-02T16:03:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo博客配置笔记</title>
+        <pubTime>2017-07-19T03:54:19.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+        <tag>笔记</tag>
+         
+         
+           
+             
+              <breadCrumb title="others" url="http://blog.hackdog.cn/categories/others/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
     
 </urlset>
